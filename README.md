@@ -38,6 +38,26 @@ index.js
 
 ```
 
+
+### Layouts
+All routes receive a "layout" property, you can pass a layout component to wrap your component.
+
+```
+  import AuthLayout from "./layouts/DefaultLayout";
+  import DefaultLayout from "./layouts/AdminLayout";
+  
+  import SignIn from "./views/SignIn";
+  import SignIn from "./views/SignUp";
+  import Home from "./views/Home";
+ 
+  
+  const routes = [
+    { path: "/", component: Home, layout: DefaultLayout exact: true },
+    { path: "/signin", component: SignIn, layout: AuthLayout },
+    { path: "/signup", component: SignUp, layout: AuthLayout }
+  ];
+```
+
 ### Guards
 You can add guards with the "guards" property to your routes and a guards array with your validations functions, a guard is a simple setup object with a guard info:
 

@@ -6,7 +6,7 @@ const validateGuards = (guards = []) => {
   return guards.find(guard => !guard.executable())
 }
 
-const SmartRoute = ({ component: Component, guards = [], ...rest }) => (
+const SmartRoute = ({ component: Component, guards = [], layout: Layout, ...rest }) => (
   <Route
     {...rest}
     render={props => {
@@ -14,7 +14,14 @@ const SmartRoute = ({ component: Component, guards = [], ...rest }) => (
       if (rejectedGuard) {
         return <Redirect to={rejectedGuard.rejectTo} />
       } else {
-        return <Component {...props} />
+        if (!Layout) {
+          return <Component {...props} />
+        }
+        return (
+          <Layout>
+            <Component {...props} />
+          </Layout>
+        )
       }
     }}
   />
@@ -22,7 +29,8 @@ const SmartRoute = ({ component: Component, guards = [], ...rest }) => (
 
 SmartRoute.propTypes = {
   component: PropTypes.any,
-  guards: PropTypes.array
+  guards: PropTypes.array,
+  layout: PropTypes.any
 }
 
 export default SmartRoute

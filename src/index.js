@@ -13,7 +13,7 @@ const mapGuards = (guardsToCheck = [], availableGuards) => {
   })
 }
 
-const RouterSchema = ({routes, guards}) => {
+const RouterSchema = ({ routes, guards, ...rest }) => {
   return (
     <Router>
       <Switch>
@@ -23,8 +23,10 @@ const RouterSchema = ({routes, guards}) => {
               exact={route.exact}
               key={route.path}
               path={route.path}
+              layout={route.layout}
               guards={mapGuards(route.guards, guards)}
               component={route.component}
+              rest={rest}
             />
           )
         })}
@@ -35,12 +37,14 @@ const RouterSchema = ({routes, guards}) => {
 
 RouterSchema.propTypes = {
   routes: PropTypes.array,
-  guards: PropTypes.array
+  guards: PropTypes.array,
+  layouts: PropTypes.array
 }
 
 RouterSchema.defaultProps = {
   routes: [],
-  guards: []
+  guards: [],
+  layouts: []
 }
 
 export default RouterSchema
