@@ -1,8 +1,8 @@
 {
   "name": "react-router-schema",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "React router dom wrapper to handle routes like a schema.",
-  "author": "kmilo93sd",
+  "author": "kmilo93sd <camilo.dvops@gmail.com",
   "license": "MIT",
   "repository": "https://github.com/DevMentes/react-router-schema.git",
   "main": "dist/index.js",
